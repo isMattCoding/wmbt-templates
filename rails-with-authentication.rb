@@ -172,7 +172,7 @@ Installing rspec... 🎯
   run "mkdir spec/features"
   run "mkdir spec/requests"
   run "touch spec/routing_spec.rb"
-  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/spec/routing_spec.rb > spec/routing_spec.rb"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/spec/routing_spec.rb > spec/routing_spec.rb"
 
 
   #     Rubocop
@@ -210,6 +210,7 @@ Initialise Git and make first commit 🥳
 ===============================================================================", :yellow
   say
 
+  run "rspec"
   git :init
   git add: "."
   git commit: %Q{ -m "Initial commit with authentication template from https://github.com/isMattCoding/wmbt-templates'" }
@@ -244,5 +245,8 @@ Rails app with authentication successfully created! 🎉🍾
   say "$ cd #{app_name}", :yellow
   say
   say "Then run:"
-  say "$ ./bin/dev", :green
+  say "$ rails server", :green
+  say
+  say "To run tests:"
+  say "$ rspec", :green
 end
