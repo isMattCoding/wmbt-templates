@@ -32,16 +32,16 @@ Once the app has generated, you can navigate to your app folder and run the app 
 
 ## Customization
 ### Devise Configuration
-Devise is pre-installed for user authentication. To configure Devise further, refer to the Devise documentation.
+Devise is pre-installed for user authentication. To configure Devise further, refer to the [Devise documentation](https://github.com/heartcombo/devise).
 
 ### Tailwind CSS
-Tailwind CSS is installed and ready to use. Customize your Tailwind configuration in config/tailwind.config.js.
+Tailwind CSS is installed and ready to use. Customize your Tailwind configuration in `config/tailwind.config.js`.
 
 ### RSpec
-RSpec is set up for testing. Add your tests in the spec directory. Refer to the RSpec documentation for more details.
+RSpec is set up for testing. Add your tests in the spec directory. Refer to the [RSpec documentation](https://rspec.info/features/6-0/rspec-rails/) for more details.
 
 ### RuboCop
-RuboCop is configured for code linting. Customize your linting rules in the .rubocop.yml file. Refer to the RuboCop documentation for more details.
+RuboCop is configured for code linting. Customize your linting rules in the .rubocop.yml file. Refer to the [RuboCop documentation](https://docs.rubocop.org/rubocop/1.64/index.html) for more details.
 
 ## Contributing
 Contributions are welcome! Please submit a pull request or open an issue to discuss any changes.
