@@ -116,8 +116,15 @@ Add Tailwind 🎨
 
   rails_command "tailwindcss:install"
   run "mkdir app/assets/stylesheets/config/"
+  run "mkdir app/assets/stylesheets/config/components"
   run "touch app/assets/stylesheets/config/_colors.scss"
+  run "touch app/assets/stylesheets/config/_globals.scss"
+  run "touch app/assets/stylesheets/config/components/_header.scss"
+
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/_colors.scss > app/assets/stylesheets/config/_colors.scss"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/_globals.scss > app/assets/stylesheets/config/_globals.scss"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/components/_header.scss > app/assets/stylesheets/config/components/_header.scss"
+
   inject_into_file "app/assets/config/manifest.js" do
     <<~JS
       //= link application.tailwind.css

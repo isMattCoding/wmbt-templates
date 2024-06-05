@@ -1,0 +1,25 @@
+.wmbt-header {
+  border-bottom: solid 3px var(--elevation-high);
+  opacity: var(--opacity);
+  transition: opacity 350ms ease 0s
+}
+
+.display-options div:hover {
+  background-color: var(--elevation-low);
+  transition: background-color 350ms ease 0s, border-radius 350ms ease 0s;
+  -webkit-transition: background-color 350ms ease 0s, border-radius 700ms ease 0s;
+}
+
+.wmbt-header div.wmbt-header__header-logo {
+  color: var(--primary-contentA)
+}
+
+.wmbt-header__links-section-menu {
+  background-color: var(--main-background-transparent);
+  backdrop-filter: blur(3px);
+  z-index:1;
+}
+
+.wmbt-header__links-section-menu>section.wmbt-header__links-section-menu-links-section {
+  background-color: var(--main-background);
+}

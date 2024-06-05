@@ -1,0 +1,28 @@
+@import "./colors";
+
+.skiptocontent {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: #000;
+  color: #fff;
+  opacity: 0;
+}
+
+.skiptocontent:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+}
+
+body {
+  background-color: var(--main-background);
+  color: var(--primary-contentA);
+  transition: color 150ms ease-in-out 0s,
+  background-color 150ms ease-in-out 0s;
+}
+
+.wmbt-header {
+  border-bottom: 3px solid var(--elevation-high);
+}
