@@ -1,0 +1,35 @@
+<header id="header" class="wmbt-header w-screen h-20">
+  <nav role="navigation" aria-label='quick-access'>
+    <ul>
+      <li>
+        <a href="#main" id="skipToMain" class="skiptocontent">main</a>
+      </li>
+      <li>
+        <a href="#footer" id="skipToFooter" class="skiptocontent">footer</a>
+      </li>
+    </ul>
+  </nav>
+  <div class='flex justify-between py-2 max-w-7xl mx-auto h-full'>
+    <%= link_to "/", class: "navbar-brand" do %>
+      <div class="wmbt-header__header-logo my-auto text-4xl">wmbt</div>
+    <% end %>
+    <div class="display-options flex">
+        <div class='language-toggle w-20 h-auto flex'>
+          <button
+            class="h-full m-auto"
+            aria-label="sombre"
+          >
+            sombre
+          </button>
+        </div>
+        <div class='dark-mode-toggle w-12 h-auto flex'>
+          <button
+            class="h-full m-auto"
+            aria-label="langage"
+          >
+            fr
+          </button>
+        </div>
+      </div>
+  </div>
+</header>

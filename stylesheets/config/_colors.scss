@@ -1,0 +1,72 @@
+$lightest-purple: #eee4fa;
+$light-purple: #dac3f4;
+$lighter-purple: #d0b2f0;
+$lighter-purple-transparent: rgb(208 178 240 / 0.5);
+$main-purple: #b181e7;
+$main-purple-transparent: rgb(177, 129, 231, 0.7);
+$darker-purple: #9250de;
+$darker-purple-unsaturated: #968ea0;
+$dark-purple: #7427cc;
+$darkest-purple: #581d9a;
+$white: #fefcfd;
+$white-transparent: rgb(254 252 254 / 0.6);
+$light-gray: #e4e2e3;
+$light-gray-transparent: rgb(228,226,227 / 0.5);
+$light-gray-1: #cbc9ca;
+$light-gray-1-transparent: rgb(203,201,202 / 0.5);
+$dark-gray: #160727;
+$dark-gray-transparent: rgb(31 10 56 / 0.6);
+$dark-gray-1: #1f0a38;
+$dark-gray-2: #290d48;
+$dark-gray-2-unsaturated: #2a2035;
+$dark-gray-3: #321059;
+$dark-gray-3-transparent: rgb(50 16 89 / 0.8);
+$dark-gray-4: #3c136a;
+$dark-gray-5: #45167a;
+$dark-gray-6: #4e198b;
+$dark-gray-7: #581c9b;
+$dark-gray-7-transparent: rgb(88 28 155 / 0.5);
+$dark-gray-7-unsaturated: #5b5463;
+$black: #0d0416;
+
+:root {
+  --primary-black: #{$black};
+  --primary-white: #{$white};
+  --main-background: #{$white};
+  --main-background-transparent: #{$white-transparent};
+  --secondary-background: #{$light-gray};
+  --primary-border: #{$darker-purple-unsaturated};
+  --secondary-border: ;
+  --elevation-default: var(--primary-white);
+  --elevation-high: var(--primary-white);
+  --elevation-mid: #{$light-gray};
+  --elevation-low: #{$light-gray-1};
+  --elevation-low-transparent: #{$lightest-purple};
+  --primary-contentA: #{$black};
+  --opacity: 1;
+  --content-accent: #{$lighter-purple};
+  --secondary-content: #{$dark-gray-3};
+  --secondary-content-transparent: #{$light-gray-transparent};
+  --secondary-content-accent: #{$dark-gray-1};
+}
+
+[data-theme="dark"] {
+  --primary-black: #{$black};
+  --primary-white: #{$white};
+  --main-background: #{$dark-gray};
+  --main-background-transparent: #{$dark-gray-transparent};
+  --secondary-background: #{$dark-gray-2-unsaturated};
+  --primary-border: #{$dark-gray-7-unsaturated};
+  --secondary-border: ;
+  --elevation-default: #{$dark-gray};
+  --elevation-high: #{$dark-gray-1};
+  --elevation-mid: #{$dark-gray-2};
+  --elevation-low: #{$dark-gray-7};
+  --elevation-low-transparent: #{$dark-gray-3-transparent};
+  --primary-contentA: #{$white};
+  --opacity:0.5;
+  --content-accent: #{$dark-gray-6};
+  --secondary-content: #{$lighter-purple};
+  --secondary-content-transparent: #{$lighter-purple-transparent};
+  --secondary-content-accent: #{$lightest-purple};
+}
