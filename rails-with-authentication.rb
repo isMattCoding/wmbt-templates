@@ -117,11 +117,13 @@ Add Layout 🛠️
   run "mkdir app/views/shared/"
   run "touch app/views/shared/_navbar.html.erb"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_navbar.html.erb > app/views/shared/_navbar.html.erb"
-  inject_into_file "app/views/layouts/application.html.erb", after: "<body>" do
-    <<~HTML
-      <%= render "shared/navbar" %>
-    HTML
-  end
+  gsub_file "app/views/layouts/application.html.erb", "<%= yield %>", <<-HTML
+
+    <%= render "shared/navbar" %>
+    <main id='main'>
+      <%= yield %>
+    </main>
+  HTML
 
   #     Tailwind
   ###############################################################
