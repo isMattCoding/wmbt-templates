@@ -130,8 +130,7 @@ Add Tailwind 🎨
       //= link application.tailwind.css
     JS
   end
-
-
+  rails_command "tailwindcss:build"
 
   #     Devise
   ###############################################################
