@@ -50,6 +50,7 @@ inject_into_file "Gemfile", before: "group :development, :test do" do
   gem "devise"
   gem "tailwindcss-rails"
   gem "sassc-rails"
+  gem "font-awesome-sass"
   RUBY
 end
 
@@ -116,13 +117,16 @@ Add Layout 🛠️
 
   run "mkdir app/views/shared/"
   run "touch app/views/shared/_navbar.html.erb"
+  run "touch app/views/shared/_footer.html.erb"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_navbar.html.erb > app/views/shared/_navbar.html.erb"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_footer.html.erb > app/views/shared/_footer.html.erb"
   gsub_file "app/views/layouts/application.html.erb", "<%= yield %>", <<-HTML
 
     <%= render "shared/navbar" %>
     <main id='main'>
       <%= yield %>
     </main>
+    <%= render "shared/footer" %>
   HTML
 
   #     Tailwind
@@ -141,10 +145,12 @@ Add Tailwind 🎨
   run "touch app/assets/stylesheets/config/_colors.scss"
   run "touch app/assets/stylesheets/config/_globals.scss"
   run "touch app/assets/stylesheets/config/components/_header.scss"
+  run "touch app/assets/stylesheets/config/components/_footer.scss"
 
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/_colors.scss > app/assets/stylesheets/config/_colors.scss"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/_globals.scss > app/assets/stylesheets/config/_globals.scss"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/components/_header.scss > app/assets/stylesheets/config/components/_header.scss"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/components/_footer.scss > app/assets/stylesheets/config/components/_footer.scss"
 
   inject_into_file "app/assets/config/manifest.js" do
     <<~JS

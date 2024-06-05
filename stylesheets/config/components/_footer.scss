@@ -1,0 +1,14 @@
+footer.wmbt-footer>div>div>a:hover {
+  color: var(--elevation-mid);
+  transition: color 350ms ease 0s;
+}
+
+footer.wmbt-footer,
+footer.wmbt-footer a  {
+  color: var(--secondary-content);
+}
+
+footer.wmbt-footer>div.border-t {
+  border-color: var(--elevation-high);
+  border-width: 3px 0 0 0 ;
+}
