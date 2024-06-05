@@ -104,6 +104,25 @@ Using GitHub's .gitignore file 😶‍🌫️
   gsub_file(".gitignore", "config/initializers/secret_token.rb", "# config/initializers/secret_token.rb")
   gsub_file(".gitignore", "config/master.key", "# config/master.key")
 
+  #     Layouts
+  ###############################################################
+
+  say
+  say "
+===============================================================================
+Add Layout 🛠️
+===============================================================================", :yellow
+  say
+
+  run "mkdir app/views/shared/"
+  run "touch app/views/shared/_navbar.html.erb"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_navbar.html.erb > app/views/shared/_navbar.html.erb"
+  inject_into_file "app/views/layouts/application.html.erb", after: "<body>" do
+    <<~HTML
+      <%= render "shared/navbar" %>
+    HTML
+  end
+
   #     Tailwind
   ###############################################################
 
@@ -215,26 +234,6 @@ Create database 🧙
 
   rails_command "db:create"
   rails_command "db:migrate"
-
-  #     Layouts
-  ###############################################################
-
-  say
-  say "
-===============================================================================
-Add Layout 🛠️
-===============================================================================", :yellow
-  say
-
-  run "mkdir app/views/shared/"
-  run "touch app/views/shared/_navbar.html.erb"
-  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_navbar.html.erb > app/views/shared/_navbar.html.erb"
-  inject_into_file "app/views/layouts/application.html.erb", after: "<body>" do
-    <<~HTML
-      <%= render "shared/navbar" %>
-    HTML
-  end
-
 
   #     Git
   ###############################################################
