@@ -118,6 +118,12 @@ Add Tailwind 🎨
   run "mkdir app/assets/stylesheets/config/"
   run "touch app/assets/stylesheets/config/_colors.scss"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/stylesheets/config/_colors.scss > app/assets/stylesheets/config/_colors.scss"
+  inject_into_file "app/assets/config/manifest.js" do
+    <<~JS
+      //= link application.tailwind.css
+    JS
+  end
+
 
 
   #     Devise
