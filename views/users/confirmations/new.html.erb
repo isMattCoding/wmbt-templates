@@ -1,0 +1,18 @@
+<div class="flex justify-center flex-col">
+  <h2 class="text-center text-xl">Resend confirmation instructions</h2>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "w-full rounded-lg bg-[var(--elevation-high)]" %>
+    </div>
+
+    <div class="actions mt-4 w-full">
+      <%= f.submit "Resend confirmation instructions", class: "rounded-lg bg-[--content-accent] w-full py-2"  %>
+    </div>
+  <% end %>
+
+  <%= render "users/shared/links" %>
+</div>

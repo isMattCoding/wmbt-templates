@@ -156,10 +156,14 @@ Add users with Devise ➕
 
   generate "devise:views", "User"
 
-  run "rm app/views/users/registrations/new.html.erb && touch app/views/users/registrations/new.html.erb"
-  run "rm app/views/users/shared/_links.html.erb && touch app/views/users/shared/_links.html.erb"
-  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/users/registrations/new.html.erb > app/views/users/registrations/new.html.erb"
-  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/users/shared/_links.html.erb > app/views/users/shared/_links.html.erb"
+  def replace_view(view_type)
+    run "rm app/views/users/#{view_type}.html.erb && touch app/views/users/#{view_type}.html.erb"
+    run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/users/#{view_type}.html.erb > app/views/users/#{view_type}.html.erb"
+  end
+  view_types = %w(confirmations/new passwords/edit passwords/new registrations/new registrations/edit sessions/new shared/_links)
+  view_types.each do |view_type|
+    replace_view(view_type)
+  end
 
   say
   say "Generate User model", :yellow
