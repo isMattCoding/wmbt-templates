@@ -129,6 +129,64 @@ Add Layout 🛠️
     <%= render "shared/footer" %>
   HTML
 
+  #     Devise
+  ###############################################################
+
+  say
+  say "
+===============================================================================
+Add users with Devise ➕
+===============================================================================", :yellow
+  say
+  say "Installing Devise...", :yellow
+  say
+
+  generate "devise:install"
+
+  say
+  say "Set ActionMailer url to localhost:3000 in development environment", :yellow
+  say
+
+  environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }",
+  env: 'development'
+
+  say
+  say "Generate custom Devise views", :yellow
+  say
+
+  generate "devise:views", "User"
+
+  run "rm app/views/users/registrations/new.html.erb && touch app/views/users/registrations/new.html.erb"
+  run "rm app/views/users/shared/_links.html.erb && touch app/views/users/shared/_links.html.erb"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/users/registrations/new.html.erb > app/views/users/registrations/new.html.erb"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/users/shared/_links.html.erb > app/views/users/shared/_links.html.erb"
+
+  say
+  say "Generate User model", :yellow
+  say
+
+  generate :devise, "User", "first_name", "last_name"
+
+  say
+  say "Change config to allow custom Devise views", :yellow
+  say
+
+  gsub_file("config/initializers/devise.rb", "# config.scoped_views = false", "config.scoped_views = true")
+
+  say
+  say "Add migration for admin column in users table", :yellow
+  say
+
+  generate :migration, "add_admin_to_users", "admin:boolean"
+  Dir.glob("db/migrate/*_add_admin_to_users.rb").each do |file|
+
+    say
+    say "Editing #{file} to change admin default value to false", :yellow
+    say
+
+    gsub_file(file, "add_column :users, :admin, :boolean", "add_column :users, :admin, :boolean, default: false")
+  end
+
   #     Tailwind
   ###############################################################
 
@@ -157,43 +215,14 @@ Add Tailwind 🎨
       //= link application.tailwind.css
     JS
   end
-  rails_command "tailwindcss:build"
-
-  #     Devise
-  ###############################################################
-
-  say
-  say "
-===============================================================================
-Add users with Devise ➕
-===============================================================================", :yellow
-  say
-  say "Installing Devise...", :yellow
-  say
-
-  generate "devise:install"
-
-  say
-  say "Set ActionMailer url to localhost:3000 in development environment", :yellow
-  say
-
-  environment "config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }",
-  env: 'development'
-
-  say
-  say "Generate custom Devise views", :yellow
-  say
-
-  generate "devise:views", "User"
-  create_file "app/views/layouts/devise.html.erb", IO.read("app/views/layouts/application.html.erb")
-
-  gsub_file(
+    create_file "app/views/layouts/devise.html.erb", IO.read("app/views/layouts/application.html.erb")
+    gsub_file(
     "app/views/layouts/devise.html.erb",
     "<%= yield %>",
     <<-HTML
 
     <div class="container flex justify-center">
-        <div class="bg-[var(--elevation-low-transparent)] rounded border-solid border-[1px] border-[var(--primary-border)] px-12 py-20">
+        <div class="bg-[var(--elevation-low-transparent)] rounded border-solid border-[1px] border-[var(--primary-border)] px-3 py-4 md:px-12 md:py-20 min-w-[20rem] w-2/5">
           <%= yield %>
         </div>
       </div>
@@ -220,32 +249,7 @@ end
     end
     RUBY
   )
-
-  say
-  say "Generate User model", :yellow
-  say
-
-  generate :devise, "User", "first_name", "last_name"
-
-  say
-  say "Change config to allow custom Devise views", :yellow
-  say
-
-  gsub_file("config/initializers/devise.rb", "# config.scoped_views = false", "config.scoped_views = true")
-
-  say
-  say "Add migration for admin column in users table", :yellow
-  say
-
-  generate :migration, "add_admin_to_users", "admin:boolean"
-  Dir.glob("db/migrate/*_add_admin_to_users.rb").each do |file|
-
-    say
-    say "Editing #{file} to change admin default value to false", :yellow
-    say
-
-    gsub_file(file, "add_column :users, :admin, :boolean", "add_column :users, :admin, :boolean, default: false")
-  end
+  rails_command "tailwindcss:build"
 
   #     rspec
   ###############################################################
