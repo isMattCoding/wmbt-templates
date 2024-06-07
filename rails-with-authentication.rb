@@ -122,12 +122,30 @@ Add Layout 🛠️
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/views/shared/_footer.html.erb > app/views/shared/_footer.html.erb"
   gsub_file "app/views/layouts/application.html.erb", "<%= yield %>", <<-HTML
 
-    <%= render "shared/navbar" %>
-    <main id='main' class="flex justify-center">
-      <%= yield %>
-    </main>
-    <%= render "shared/footer" %>
+  <%= render "shared/navbar" %>
+  <main id='main' class="flex justify-center">
+  <%= yield %>
+  </main>
+  <%= render "shared/footer" %>
   HTML
+
+    #     Dark mode
+  ###############################################################
+
+  say
+  say "
+===============================================================================
+Setting up Dark mode 🌓
+===============================================================================", :yellow
+  say
+
+  gsub_file "app/views/layouts/application.html.erb", "<html>", <<-HTML
+    <html data-theme="<%= cookies[:theme] %>">
+  HTML
+
+  rails_command "generate stimulus theme"
+  run "rm app/javascript/controllers/theme_controller.js && touch app/javascript/controllers/theme_controller.js"
+  run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/javascript/controllers/theme_controller.js > app/javascript/controllers/theme_controller.js"
 
   #     Devise
   ###############################################################
@@ -240,6 +258,7 @@ end
     <<-RUBY
     class ApplicationController < ActionController::Base
       layout :layout_by_resource
+      before_action :set_theme
 
       private
 
@@ -249,6 +268,11 @@ end
         else
           "application"
         end
+      end
+
+      def set_theme
+        cookies[:theme] ||= 'dark'
+        cookies[:theme] = params[:theme] if params[:theme].in? ['dark', 'light']
       end
     end
     RUBY
