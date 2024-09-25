@@ -277,6 +277,14 @@ end
     end
     RUBY
   )
+
+  append_to_file "config/puma.rb" do
+    <<~RUBY
+      # Automatically run `rake tailwindcss:watch` on rails server
+      plugin :tailwindcss if ENV.fetch("RAILS_ENV", "development") == "development"
+    RUBY
+  end
+
   rails_command "tailwindcss:build"
 
   #     rspec
