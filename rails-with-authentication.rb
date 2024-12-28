@@ -57,7 +57,7 @@ end
 gsub_file(
   "Gemfile",
   "gem \"capybara\"",
-  "gem 'rspec-rails', '~> 5.0'
+  "gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'capybara'
   gem 'launchy'"
@@ -303,6 +303,22 @@ Installing rspec... 🎯
   run "mkdir spec/requests"
   run "touch spec/routing_spec.rb"
   run "curl -L https://raw.githubusercontent.com/isMattCoding/wmbt-templates/main/spec/routing_spec.rb > spec/routing_spec.rb"
+
+  # Path to application.rb
+  application_config_file = 'config/application.rb'
+
+  # Content to insert
+  generators_config = <<-RUBY
+
+      config.generators do |g|
+        g.test_framework :rspec, fixtures: false
+        g.system_tests = nil # Prevent system test files
+      end
+  RUBY
+
+  # Append the configuration to the Application class
+  insert_into_file application_config_file, generators_config, after: "class Application < Rails::Application\n"
+
 
 
   #     Rubocop
